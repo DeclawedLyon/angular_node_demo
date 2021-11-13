@@ -1,5 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import 'rxjs'
 
 @Injectable()
@@ -11,8 +13,12 @@ export class WebService {
     return this.http.get(`${this.BASE_URL}/messages`).toPromise()
   }
 
-  postMessages(message:any) {
+  postMessage(message:any) {
+    console.log(message)
+    // return this.http.post(this.BASE_URL + '/messages', message).toPromise();
     return this.http.post(`${this.BASE_URL}/messages`, message).toPromise()
-
   }
 }
+
+
+
